@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puerto Diesel — Importación de repuestos diesel y comercio exterior</title>
+<meta name="description" content="Importamos repuestos diesel originales y alternativos, y asesoramos tu operación de comercio exterior: clasificación arancelaria, Incoterms, despacho aduanero y logística naviera.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ---------- Tokens ---------- */
+:root{
+  --bg:#ECEFF3;
+  --surface:#FFFFFF;
+  --surface-2:#E1E7EE;
+  --ink:#0E1620;
+  --ink-muted:#52606D;
+  --line:#D2D9E1;
+  --accent:#C8641C;
+  --accent-strong:#A95317;
+  --accent2:#1E8A82;
+  --on-accent:#181008;
+  --shadow: 0 1px 2px rgba(14,22,32,.06), 0 8px 24px -12px rgba(14,22,32,.18);
+  --radius-s:4px;
+  --radius-m:8px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1220;
+    --surface:#121B29;
+    --surface-2:#1A2534;
+    --ink:#E7ECF2;
+    --ink-muted:#94A2B4;
+    --line:#243040;
+    --accent:#E2843A;
+    --accent-strong:#F0A05C;
+    --accent2:#35B0A6;
+    --on-accent:#14100A;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px -14px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1220;
+  --surface:#121B29;
+  --surface-2:#1A2534;
+  --ink:#E7ECF2;
+  --ink-muted:#94A2B4;
+  --line:#243040;
+  --accent:#E2843A;
+  --accent-strong:#F0A05C;
+  --accent2:#35B0A6;
+  --on-accent:#14100A;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px -14px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:.001ms !important; transition-duration:.001ms !important;} }
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;}
+
+h1,h2,h3,.display{
+  font-family:"Barlow Condensed", ui-sans-serif, system-ui, sans-serif;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.01em;
+  text-wrap:balance;
+  margin:0;
+  color:var(--ink);
+}
+.mono, .tag, .stat-num, .kicker, code{
+  font-family:"IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+  font-variant-numeric:tabular-nums;
+}
+p{margin:0;}
+a{color:inherit;}
+.container{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 28px;
+}
+section{padding:88px 0;}
+@media (max-width:720px){ section{padding:56px 0;} }
+
+.eyebrow{
+  font-family:"IBM Plex Mono", monospace;
+  font-size:12.5px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent-strong);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+}
+.eyebrow::before{
+  content:"";
+  width:22px;
+  height:2px;
+  background:var(--accent);
+  display:inline-block;
+}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:13px 22px;
+  border-radius:var(--radius-s);
+  font-family:"IBM Plex Sans", sans-serif;
+  font-weight:600;
+  font-size:15px;
+  text-decoration:none;
+  border:1px solid transparent;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.btn-primary{ background:var(--accent); color:var(--on-accent); }
+.btn-primary:hover{ background:var(--accent-strong); }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+.btn-ghost:hover{ border-color:var(--ink-muted); }
+
+/* ---------- Header ---------- */
+header{
+  position:sticky; top:0; z-index:40;
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 28px;
+  max-width:1180px; margin:0 auto;
+}
+.brand{
+  display:flex; align-items:center; gap:10px;
+  font-family:"Barlow Condensed", sans-serif;
+  font-weight:800; font-size:22px; letter-spacing:.02em; text-transform:uppercase;
+  text-decoration:none; color:var(--ink);
+}
+.brand-mark{
+  width:30px; height:30px; border-radius:6px;
+  background:var(--accent);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.brand-mark svg{width:17px;height:17px;display:block;}
+.brand small{ display:block; font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.12em; color:var(--ink-muted); text-transform:uppercase; font-weight:400; margin-top:1px;}
+.nav-links{ display:flex; align-items:center; gap:30px; list-style:none; margin:0; padding:0; }
+.nav-links a{ text-decoration:none; font-size:14.5px; font-weight:500; color:var(--ink-muted); }
+.nav-links a:hover{ color:var(--ink); }
+.nav-right{ display:flex; align-items:center; gap:18px; }
+.nav-toggle{ display:none; background:none; border:1px solid var(--line); border-radius:var(--radius-s); width:38px; height:38px; cursor:pointer; color:var(--ink); align-items:center; justify-content:center; }
+@media (max-width:900px){
+  .nav-links{ display:none; }
+  .nav-toggle{ display:flex; }
+}
+
+/* ---------- Hero ---------- */
+.hero{ padding:72px 0 0; }
+.hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:start; }
+@media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; } }
+.hero h1{ font-size:clamp(38px,5.6vw,64px); line-height:1.03; }
+.hero h1 em{ font-style:normal; color:var(--accent); }
+.hero-sub{ margin-top:22px; max-width:52ch; color:var(--ink-muted); font-size:17px; }
+.hero-ctas{ display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+
+.route{
+  margin-top:56px;
+  border:1px solid var(--line);
+  border-radius:var(--radius-m);
+  background:var(--surface);
+  box-shadow:var(--shadow);
+  padding:22px 26px 24px;
+}
+.route-label{ font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-muted); display:flex; justify-content:space-between; margin-bottom:16px;}
+.route-line{ position:relative; display:flex; justify-content:space-between; align-items:center; padding:0 2px; }
+.route-line::before{
+  content:""; position:absolute; left:6px; right:6px; top:50%; height:2px;
+  background:repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 12px);
+}
+.route-stop{ position:relative; text-align:center; background:var(--surface); padding:0 6px; z-index:1; }
+.route-stop .dot{ width:11px; height:11px; border-radius:50%; background:var(--surface); border:2px solid var(--accent); margin:0 auto 8px; }
+.route-stop:last-child .dot{ background:var(--accent); }
+.route-stop span{ display:block; font-family:"IBM Plex Mono",monospace; font-size:11.5px; font-weight:500; color:var(--ink); white-space:nowrap; }
+@media (max-width:560px){ .route-stop span{ font-size:9.5px; } }
+
+/* manifest ticket */
+.manifest{
+  border:1px solid var(--line);
+  border-radius:var(--radius-m);
+  background:var(--surface);
+  box-shadow:var(--shadow);
+  padding:26px;
+}
+.manifest-top{ display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1px dashed var(--line); padding-bottom:16px; margin-bottom:18px; }
+.manifest-top .mono{ font-size:11px; color:var(--ink-muted); }
+.stamp{
+  border:1.5px solid var(--accent2); color:var(--accent2);
+  font-family:"IBM Plex Mono",monospace; font-size:10.5px; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase;
+  padding:5px 9px; border-radius:4px; transform:rotate(-3deg);
+}
+.manifest-stats{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.mstat .stat-num{ font-size:30px; font-weight:600; color:var(--ink); display:block; }
+.mstat .stat-label{ font-size:12.5px; color:var(--ink-muted); margin-top:2px; }
+
+/* ---------- Section headings ---------- */
+.section-head{ max-width:640px; margin-bottom:48px; }
+.section-head h2{ font-size:clamp(28px,4vw,42px); }
+.section-head p{ color:var(--ink-muted); margin-top:14px; font-size:16px; }
+
+/* ---------- Catalog ---------- */
+.cat-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius-m); overflow:hidden; }
+@media (max-width:900px){ .cat-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:600px){ .cat-grid{ grid-template-columns:1fr; } }
+.cat-card{ background:var(--surface); padding:28px; display:flex; flex-direction:column; gap:14px; }
+.cat-icon{ width:42px; height:42px; border-radius:8px; background:var(--surface-2); display:flex; align-items:center; justify-content:center; color:var(--accent); }
+.cat-icon svg{ width:22px; height:22px; }
+.cat-card h3{ font-size:20px; text-transform:none; letter-spacing:0; font-weight:700; }
+.cat-card p{ color:var(--ink-muted); font-size:14.5px; }
+.cat-meta{ margin-top:auto; display:flex; justify-content:space-between; align-items:center; padding-top:14px; border-top:1px solid var(--line); font-size:12px; }
+.cat-brands{ color:var(--ink-muted); }
+.tag{ background:var(--surface-2); color:var(--ink-muted); padding:3px 7px; border-radius:4px; font-size:11px; }
+
+/* ---------- Services ---------- */
+.serv-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+@media (max-width:900px){ .serv-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:560px){ .serv-grid{ grid-template-columns:1fr; } }
+.serv-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m); padding:26px; }
+.serv-num{ font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--accent); font-weight:600; }
+.serv-card h3{ font-size:19px; text-transform:none; letter-spacing:0; margin-top:10px; }
+.serv-card p{ color:var(--ink-muted); font-size:14.5px; margin-top:10px; }
+
+/* ---------- Process ---------- */
+.process{ background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.proc-list{ position:relative; display:flex; flex-direction:column; }
+.proc-item{ display:grid; grid-template-columns:70px 1fr; gap:22px; padding:26px 0; border-top:1px solid var(--line); }
+.proc-item:first-child{ border-top:none; }
+.proc-num{ font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:34px; color:var(--accent); line-height:1; }
+.proc-body h3{ font-size:19px; text-transform:none; letter-spacing:0; font-weight:700; }
+.proc-body p{ color:var(--ink-muted); font-size:14.5px; margin-top:6px; max-width:60ch; }
+
+/* ---------- Why us ---------- */
+.why-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+@media (max-width:900px){ .why-grid{ grid-template-columns:1fr; gap:40px; } }
+.why-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:20px; }
+.why-list li{ display:flex; gap:14px; font-size:15.5px; }
+.why-list .check{ flex-shrink:0; width:22px; height:22px; border-radius:50%; background:var(--surface-2); color:var(--accent2); display:flex; align-items:center; justify-content:center; margin-top:1px; }
+.why-list .check svg{ width:12px; height:12px; }
+.stat-tiles{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius-m); overflow:hidden; }
+.tile{ background:var(--surface); padding:24px; }
+.tile .stat-num{ font-size:32px; font-weight:600; }
+.tile .stat-label{ font-size:12.5px; color:var(--ink-muted); margin-top:4px; }
+
+/* ---------- Testimonials ---------- */
+.test-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+@media (max-width:900px){ .test-grid{ grid-template-columns:1fr; } }
+.test-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m); padding:26px; display:flex; flex-direction:column; gap:16px; }
+.test-quote{ font-size:15.5px; color:var(--ink); }
+.test-who{ display:flex; align-items:center; gap:12px; margin-top:auto; }
+.test-avatar{ width:36px; height:36px; border-radius:50%; background:var(--surface-2); display:flex; align-items:center; justify-content:center; font-family:"Barlow Condensed",sans-serif; font-weight:700; color:var(--accent-strong); font-size:15px; }
+.test-who .name{ font-size:13.5px; font-weight:600; }
+.test-who .role{ font-size:12px; color:var(--ink-muted); }
+
+/* ---------- Contact ---------- */
+.contact-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:56px; }
+@media (max-width:900px){ .contact-grid{ grid-template-columns:1fr; } }
+.field{ display:flex; flex-direction:column; gap:7px; margin-bottom:18px; }
+.field label{ font-size:12.5px; font-weight:600; letter-spacing:.02em; }
+.field input, .field select, .field textarea{
+  font-family:inherit; font-size:15px; padding:11px 13px;
+  border:1px solid var(--line); border-radius:var(--radius-s);
+  background:var(--surface); color:var(--ink);
+}
+.field textarea{ resize:vertical; min-height:96px; }
+.field input:focus, .field select:focus, .field textarea:focus{ outline:2px solid var(--accent); outline-offset:1px; }
+.form-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:560px){ .form-row{ grid-template-columns:1fr; } }
+.form-note{ font-size:12.5px; color:var(--ink-muted); margin-top:10px; }
+.form-status{ margin-top:14px; font-size:14px; font-weight:600; color:var(--accent2); display:none; }
+.form-status.show{ display:block; }
+
+.contact-info{ display:flex; flex-direction:column; gap:22px; }
+.info-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-m); padding:22px; }
+.info-card .label{ font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-muted); font-family:"IBM Plex Mono",monospace; }
+.info-card .value{ font-size:17px; font-weight:600; margin-top:6px; }
+.info-card .value a{ text-decoration:none; color:var(--accent-strong); }
+
+/* ---------- Footer ---------- */
+footer{ border-top:1px solid var(--line); padding:44px 0; }
+.foot-grid{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; }
+.foot-links{ display:flex; gap:24px; list-style:none; padding:0; margin:0; }
+.foot-links a{ text-decoration:none; font-size:13.5px; color:var(--ink-muted); }
+.foot-links a:hover{ color:var(--ink); }
+.foot-legal{ font-size:12.5px; color:var(--ink-muted); }
+
+.reveal{ opacity:1; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="#top" class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#181008" stroke-width="2" stroke-linecap="round"><path d="M4 20 L4 10 L12 4 L20 10 L20 20"/><path d="M9 20 L9 13 L15 13 L15 20"/></svg>
+      </span>
+      <span>Puerto Diesel<small>Import &amp; comercio exterior</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="nav-right">
+      <a class="btn btn-primary" href="https://wa.me/51999999999" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </nav>
+  <ul class="nav-links" id="mobileNav" style="display:none; flex-direction:column; gap:0; padding:0 28px 18px; list-style:none;">
+    <li style="padding:10px 0; border-top:1px solid var(--line);"><a href="#catalogo">Catálogo</a></li>
+    <li style="padding:10px 0; border-top:1px solid var(--line);"><a href="#servicios">Servicios</a></li>
+    <li style="padding:10px 0; border-top:1px solid var(--line);"><a href="#proceso">Proceso</a></li>
+    <li style="padding:10px 0; border-top:1px solid var(--line);"><a href="#nosotros">Nosotros</a></li>
+    <li style="padding:10px 0; border-top:1px solid var(--line);"><a href="#contacto">Contacto</a></li>
+  </ul>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">Repuestos diesel &amp; comercio exterior</p>
+        <h1>Del puerto de origen a tu taller,<br>sin fricción en la <em>aduana</em>.</h1>
+        <p class="hero-sub">Importamos repuestos diesel originales y alternativos desde fábricas certificadas, y asesoramos tu operación de comercio exterior de punta a punta: clasificación arancelaria, Incoterms, despacho aduanero y logística naviera.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#catalogo">Ver catálogo de repuestos</a>
+          <a class="btn btn-ghost" href="#contacto">Agendar asesoría</a>
+        </div>
+
+        <div class="route" aria-hidden="false">
+          <div class="route-label"><span>Ruta típica de importación</span><span>INCOTERM FOB</span></div>
+          <div class="route-line">
+            <div class="route-stop"><span class="dot"></span><span>Shanghai</span></div>
+            <div class="route-stop"><span class="dot"></span><span>Busan</span></div>
+            <div class="route-stop"><span class="dot"></span><span>Callao</span></div>
+            <div class="route-stop"><span class="dot"></span><span>Tu taller</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="manifest">
+        <div class="manifest-top">
+          <div>
+            <div class="mono">MANIFIESTO · PD-2026</div>
+            <div class="mono">CARGA CONSOLIDADA</div>
+          </div>
+          <span class="stamp">Despacho ágil</span>
+        </div>
+        <div class="manifest-stats">
+          <div class="mstat"><span class="stat-num">14</span><span class="stat-label">años en comercio exterior</span></div>
+          <div class="mstat"><span class="stat-num">22</span><span class="stat-label">países de origen</span></div>
+          <div class="mstat"><span class="stat-num">72h</span><span class="stat-label">despacho promedio en Callao</span></div>
+          <div class="mstat"><span class="stat-num">4,200+</span><span class="stat-label">SKU en catálogo</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="catalogo">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Catálogo</p>
+        <h2>Repuestos diesel por línea</h2>
+        <p>Piezas originales y alternativas homologadas, clasificadas por partida arancelaria para que tu importación no se detenga en aduana.</p>
+      </div>
+
+      <div class="cat-grid">
+        <article class="cat-card">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="6" height="12" rx="1"/><path d="M11 15v3M8 21h6M11 6h6M17 6v4"/></svg></div>
+          <h3>Inyectores &amp; common rail</h3>
+          <p>Inyectores electrónicos y mecánicos, riel común y kits de reparación para motores livianos y pesados.</p>
+          <div class="cat-meta"><span class="cat-brands">Bosch · Denso · Delphi</span><span class="tag">HS 8413.91</span></div>
+        </article>
+
+        <article class="cat-card">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6"/><path d="M12 6V3M12 21v-3M6 12H3M21 12h-3"/></svg></div>
+          <h3>Turbocompresores</h3>
+          <p>Turbos remanufacturados y nuevos con garantía, más cartuchos y kits de sellos para reparación en sitio.</p>
+          <div class="cat-meta"><span class="cat-brands">Garrett · Holset · IHI</span><span class="tag">HS 8414.80</span></div>
+        </article>
+
+        <article class="cat-card">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="9" rx="1.5"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div>
+          <h3>Bombas de inyección</h3>
+          <p>Bombas en línea y rotativas, más repuestos internos: pistones, válvulas de descarga y reguladores.</p>
+          <div class="cat-meta"><span class="cat-brands">Bosch · Zexel · Stanadyne</span><span class="tag">HS 8413.30</span></div>
+        </article>
+
+        <article class="cat-card">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="6" rx="1"/><circle cx="8" cy="15" r="1.6"/><circle cx="13" cy="15" r="1.6"/><circle cx="18" cy="15" r="1.6"/></svg></div>
+          <h3>Culatas &amp; kits de reparación</h3>
+          <p>Culatas nuevas y rectificadas, empaquetaduras, válvulas y kits completos de overhaul.</p>
+          <div class="cat-meta"><span class="cat-brands">OEM &amp; aftermarket</span><span class="tag">HS 8409.99</span></div>
+        </article>
+
+        <article class="cat-card">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16l-6 8v8l-4-2v-6L4 4z"/></svg></div>
+          <h3>Filtración diesel</h3>
+          <p>Filtros de combustible, aceite y aire, separadores de agua y elementos de alta capacidad para flotas.</p>
+          <div class="cat-meta"><span class="cat-brands">Fleetguard · Donaldson · Mann</span><span class="tag">HS 8421.23</span></div>
+        </article>
+
+        <article class="cat-card">
+          <div class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg></div>
+          <h3>Electrónica diesel</h3>
+          <p>ECU, sensores de presión y temperatura, arneses y actuadores para sistemas common rail.</p>
+          <div class="cat-meta"><span class="cat-brands">Diagnóstico incluido</span><span class="tag">HS 9032.89</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Servicios</p>
+        <h2>Asesoría integral en comercio exterior</h2>
+        <p>No solo importamos: acompañamos tu propia operación para que clasifiques, negocies y despaches con margen y sin sobresaltos.</p>
+      </div>
+      <div class="serv-grid">
+        <div class="serv-card">
+          <span class="serv-num">01</span>
+          <h3>Clasificación arancelaria</h3>
+          <p>Determinamos la partida correcta para evitar reclasificaciones, multas y demoras en aduana.</p>
+        </div>
+        <div class="serv-card">
+          <span class="serv-num">02</span>
+          <h3>Negociación de Incoterms</h3>
+          <p>FOB, CIF o EXW: elegimos el término que reduce tu riesgo y tu costo total de importación.</p>
+        </div>
+        <div class="serv-card">
+          <span class="serv-num">03</span>
+          <h3>Despacho aduanero</h3>
+          <p>Gestionamos DUA, agente de aduana y liquidación de tributos junto a tu operador logístico.</p>
+        </div>
+        <div class="serv-card">
+          <span class="serv-num">04</span>
+          <h3>Acuerdos comerciales</h3>
+          <p>Aplicamos tratados de libre comercio vigentes para reducir o eliminar aranceles cuando corresponde.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proceso" class="process">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Proceso</p>
+        <h2>Cómo llega tu carga</h2>
+        <p>Cinco etapas, un solo interlocutor. Así se mueve tu pedido desde la cotización hasta tu almacén.</p>
+      </div>
+      <div class="proc-list">
+        <div class="proc-item">
+          <span class="proc-num">01</span>
+          <div class="proc-body"><h3>Sourcing y cotización</h3><p>Buscamos proveedores certificados y cotizamos en condición FOB o CIF según tu volumen de compra.</p></div>
+        </div>
+        <div class="proc-item">
+          <span class="proc-num">02</span>
+          <div class="proc-body"><h3>Incoterm y documentación</h3><p>Definimos el Incoterm y preparamos factura comercial, packing list y certificado de origen.</p></div>
+        </div>
+        <div class="proc-item">
+          <span class="proc-num">03</span>
+          <div class="proc-body"><h3>Tránsito internacional</h3><p>Seguimiento de la carga marítima o aérea hasta el puerto o aeropuerto de destino.</p></div>
+        </div>
+        <div class="proc-item">
+          <span class="proc-num">04</span>
+          <div class="proc-body"><h3>Despacho aduanero</h3><p>Clasificación arancelaria, DUA y coordinación directa con el agente de aduana.</p></div>
+        </div>
+        <div class="proc-item">
+          <span class="proc-num">05</span>
+          <div class="proc-body"><h3>Entrega última milla</h3><p>Distribución a tu taller o almacén en Lima, Callao y provincias.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="nosotros">
+    <div class="container why-grid">
+      <div>
+        <p class="eyebrow">Por qué nosotros</p>
+        <h2 style="font-size:clamp(26px,3.6vw,36px); margin-bottom:24px;">Operamos tu importación como si fuera propia</h2>
+        <ul class="why-list">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Red de proveedores auditados en Asia, Europa y Norteamérica.</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Trazabilidad de tu carga en cada etapa, desde el origen hasta tu taller.</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Equipo de comercio exterior con manejo de TLC y regímenes especiales.</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>Stock de respaldo en Lima para piezas de alta rotación.</li>
+        </ul>
+      </div>
+      <div class="stat-tiles">
+        <div class="tile"><span class="stat-num">14</span><span class="stat-label">años de operación</span></div>
+        <div class="tile"><span class="stat-num">1,300+</span><span class="stat-label">contenedores gestionados</span></div>
+        <div class="tile"><span class="stat-num">22</span><span class="stat-label">países de origen</span></div>
+        <div class="tile"><span class="stat-num">98%</span><span class="stat-label">despachos sin observación</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonios" style="background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Clientes</p>
+        <h2>Talleres y flotas que ya operan con nosotros</h2>
+      </div>
+      <div class="test-grid">
+        <div class="test-card">
+          <p class="test-quote">"Redujimos nuestro tiempo de despacho en Callao de dos semanas a tres días. La diferencia la hace tener un solo interlocutor para repuesto y aduana."</p>
+          <div class="test-who"><div class="test-avatar">TA</div><div><div class="name">Taller Diesel Andino</div><div class="role">Lima, Perú</div></div></div>
+        </div>
+        <div class="test-card">
+          <p class="test-quote">"Nos ayudaron a reclasificar una partida que veníamos pagando mal hace años. El ahorro en aranceles se notó desde el primer contenedor."</p>
+          <div class="test-who"><div class="test-avatar">TS</div><div><div class="name">Transportes del Sur</div><div class="role">Arequipa, Perú</div></div></div>
+        </div>
+        <div class="test-card">
+          <p class="test-quote">"Manejan volumen y urgencia por igual. Cuando una turbina se detiene una excavadora, necesitamos respuesta en horas, no en semanas."</p>
+          <div class="test-who"><div class="test-avatar">FM</div><div><div class="name">Flota Minera Centro</div><div class="role">Junín, Perú</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="container contact-grid">
+      <div>
+        <p class="eyebrow">Contacto</p>
+        <h2 style="font-size:clamp(26px,3.6vw,36px); margin-bottom:10px;">Coticemos tu próxima importación</h2>
+        <p style="color:var(--ink-muted); margin-bottom:28px;">Cuéntanos qué repuesto necesitas o en qué etapa de tu operación de comercio exterior está tu empresa.</p>
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="field"><label for="name">Nombre</label><input id="name" name="name" type="text" required placeholder="Tu nombre"></div>
+            <div class="field"><label for="company">Empresa</label><input id="company" name="company" type="text" placeholder="Nombre de tu taller o empresa"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="email">Correo</label><input id="email" name="email" type="email" required placeholder="tu@empresa.com"></div>
+            <div class="field"><label for="need">Necesito</label>
+              <select id="need" name="need">
+                <option>Cotización de repuestos</option>
+                <option>Asesoría en clasificación arancelaria</option>
+                <option>Gestión de despacho aduanero</option>
+                <option>Otro</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="message">Mensaje</label><textarea id="message" name="message" placeholder="Repuesto, marca, cantidad o el detalle de tu consulta"></textarea></div>
+          <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+          <p class="form-status" id="formStatus">Solicitud registrada. Te contactaremos dentro de las próximas 24 horas hábiles.</p>
+          <p class="form-note">Formulario de demostración: no envía datos a un servidor. Conéctalo a tu backend o proveedor de formularios preferido.</p>
+        </form>
+      </div>
+      <div class="contact-info">
+        <div class="info-card"><div class="label">WhatsApp comercial</div><div class="value"><a href="https://wa.me/51999999999" target="_blank" rel="noopener">+51 999 999 999</a></div></div>
+        <div class="info-card"><div class="label">Correo</div><div class="value"><a href="mailto:contacto@puertodiesel.pe">contacto@puertodiesel.pe</a></div></div>
+        <div class="info-card"><div class="label">Sede operativa</div><div class="value">Callao, Perú</div></div>
+        <div class="info-card"><div class="label">Horario de atención</div><div class="value">Lun–Vie, 8:30–18:30</div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container foot-grid">
+    <a href="#top" class="brand">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#181008" stroke-width="2" stroke-linecap="round"><path d="M4 20 L4 10 L12 4 L20 10 L20 20"/><path d="M9 20 L9 13 L15 13 L15 20"/></svg></span>
+      <span>Puerto Diesel</span>
+    </a>
+    <ul class="foot-links">
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <p class="foot-legal">© <span id="year"></span> Puerto Diesel. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var navToggle = document.getElementById('navToggle');
+  var mobileNav = document.getElementById('mobileNav');
+  navToggle.addEventListener('click', function(){
+    var isOpen = mobileNav.style.display === 'flex';
+    mobileNav.style.display = isOpen ? 'none' : 'flex';
+    navToggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+  mobileNav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ mobileNav.style.display = 'none'; });
+  });
+
+  var form = document.getElementById('contactForm');
+  var status = document.getElementById('formStatus');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+    status.classList.add('show');
+    form.reset();
+  });
+</script>
+</body>
+</html>
